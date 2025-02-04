@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Name</title>
+    <!-- Google Font for a cool font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* General styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Press Start 2P', cursive;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            cursor: url('cat_cursor.png'), auto; /* Custom paw cursor */
+        }
+
+        /* Dynamic gradient background */
+        body {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Container for the displayed name */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #displayName {
+            font-size: 1.5em;
+            color: #ff6f61;
+            margin-top: 20px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Interactive cat */
+        .interactive-cat {
+            position: absolute;
+            bottom: 60px;
+            right: 60px;
+            cursor: pointer;
+        }
+
+        .cat-image {
+            width: 300px;
+            transition: transform 0.2s ease;
+        }
+
+        .cat-image:hover {
+            transform: scale(1.2);
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            #displayName {
+                font-size: 1.2em;
+            }
+            .interactive-cat {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic gradient background is already applied to the body -->
+
+    <!-- Main content -->
+    <div class="container">
+        <h1>Your name is <span id="displayName"></span>!!!</h1>
+        <p></p>
+    </div>
+
+    <!-- Interactive cat -->
+    <div class="interactive-cat">
+        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3RtdDQycTE0YTc0ZnF2MXl3dXQ0Nmg2eGF4cm02YjU2enJyZ3RnbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5i7umUqAOYYEw/giphy.gif" alt="Interactive Cat" class="cat-image">
+    </div>
+
+    <script>
+        // Function to get URL parameters
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Get the name from the URL
+        var name = getQueryParam('name');
+
+        // Display the name
+        if (name) {
+            document.getElementById('displayName').innerText = decodeURIComponent(name);
+        } else {
+            document.getElementById('displayName').innerText = "Friend";
+        }
+    </script>
+
+</body>
+</html>
